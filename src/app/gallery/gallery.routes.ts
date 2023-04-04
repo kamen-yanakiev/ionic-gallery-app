@@ -1,20 +1,20 @@
 import { Routes } from '@angular/router';
-import { GalleryPage } from './gallery.page';
+import { GalleryPageComponent } from './gallery-page.component';
 
 export const routes: Routes = [
   {
     path: 'gallery',
-    component: GalleryPage,
+    component: GalleryPageComponent,
     children: [
       {
         path: 'photos',
         loadComponent: () =>
-          import('../photos/photos.page').then((m) => m.PhotosPage),
+          import('../photos/photos.page.component').then((m) => m.PhotosPageComponent),
       },
       {
         path: 'favorites',
         loadComponent: () =>
-          import('../favorites/favorites.page').then((m) => m.FavoritesPage),
+          import('../favorites/favorites-page.component').then((m) => m.FavoritesPageComponent),
       },
       {
         path: '',

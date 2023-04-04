@@ -3,12 +3,12 @@ import { IonicModule } from '@ionic/angular';
 
 @Component({
   selector: 'app-favorites',
-  templateUrl: 'favorites.page.html',
-  styleUrls: ['favorites.page.scss'],
+  templateUrl: 'favorites-page.component.html',
+  styleUrls: ['favorites-page.component.scss'],
   standalone: true,
   imports: [IonicModule]
 })
-export class FavoritesPage {
+export class FavoritesPageComponent {
 
   constructor() {}
 

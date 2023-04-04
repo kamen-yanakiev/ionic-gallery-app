@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
-import { PhotosPage } from './photos.page';
+import { PhotoComponent } from './photo.component';
 
-describe('PhotosPage', () => {
-  let component: PhotosPage;
-  let fixture: ComponentFixture<PhotosPage>;
+describe('PhotoComponent', () => {
+  let component: PhotoComponent;
+  let fixture: ComponentFixture<PhotoComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [PhotosPage, IonicModule],
+      imports: [PhotoComponent, IonicModule],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(PhotosPage);
+    fixture = TestBed.createComponent(PhotoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
