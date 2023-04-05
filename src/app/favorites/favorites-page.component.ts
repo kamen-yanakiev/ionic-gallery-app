@@ -21,7 +21,7 @@ export class FavoritesPageComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  removeFavoritePhoto(photo: Photo) {
+  removeFavoritePhoto(photo: Photo): void {
     this._router.navigate([`/gallery/photos/id:${photo.id}`])
   }
 }
