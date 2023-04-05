@@ -9,7 +9,7 @@ export const routes: Routes = [
       {
         path: 'photos',
         loadComponent: () =>
-          import('../photos/photos.page.component').then((m) => m.PhotosPageComponent),
+          import('../photos/photos-page.component').then((m) => m.PhotosPageComponent),
       },
       {
         path: 'favorites',
@@ -17,10 +17,20 @@ export const routes: Routes = [
           import('../favorites/favorites-page.component').then((m) => m.FavoritesPageComponent),
       },
       {
+        path: 'photos/:id',
+        loadComponent: () => 
+          import('../view-photo/view-photo-page.component').then((m) => m.ViewPhotoPageComponent),
+      },
+      {
         path: '',
         redirectTo: '/gallery/photos',
         pathMatch: 'full',
       },
+      // {
+      //   path: '**',
+      //   redirectTo: '/gallery/photos',
+      //   pathMatch: 'full',
+      // },
     ],
   },
   {

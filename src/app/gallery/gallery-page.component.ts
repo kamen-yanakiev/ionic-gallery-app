@@ -1,5 +1,7 @@
-import { Component, EnvironmentInjector, inject } from '@angular/core';
+import { Component, EnvironmentInjector, OnInit, inject } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
+import { PhotosService } from 'src/services/photos.service';
+import { AppStore } from 'src/store/app.store';
 
 @Component({
   selector: 'app-gallery',
@@ -9,9 +11,19 @@ import { IonicModule } from '@ionic/angular';
   imports: [IonicModule],
   providers: [],
 })
-export class GalleryPageComponent {
-  public environmentInjector = inject(EnvironmentInjector);
-  selectedTheme = '';
-  constructor() {}
+export class GalleryPageComponent implements OnInit {
+  // public environmentInjector = inject(EnvironmentInjector);
+
+  public selectedTab = 'photos';
+
+  constructor(private photosService: PhotosService, private appStore: AppStore) {}
+
+  ngOnInit(): void {
+    this.appStore.addPhotos(this.photosService.getPhotos());
+  }
+
+  tabChanged(event: any): void {
+    console.log(event);
+  }
 
 }

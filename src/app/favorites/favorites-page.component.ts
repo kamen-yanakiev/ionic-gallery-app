@@ -1,15 +1,31 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
+import { PhotoComponent } from '../photo/photo.component';
+import { AppStore } from 'src/store/app.store';
+import { Photo } from 'src/interfaces/photo.interface';
+import { CommonModule } from '@angular/common';
+import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-favorites',
   templateUrl: 'favorites-page.component.html',
   styleUrls: ['favorites-page.component.scss'],
   standalone: true,
-  imports: [IonicModule]
+  imports: [IonicModule, PhotoComponent, CommonModule],
+  providers: []
 })
-export class FavoritesPageComponent {
+export class FavoritesPageComponent implements OnInit {
 
-  constructor() {}
+  favoritePhotos$: Observable<Photo[]> = this.appStore.favoritePhotos$;
+  
+  constructor(private appStore: AppStore, private _router: Router) {}
 
+  ngOnInit(): void {      
+  }
+
+  removeFavoritePhoto(photo: Photo) {
+    this._router.navigate([`/gallery/photos/id:${photo.id}`]);
+    // this.appStore.removeFavoritePhoto(photo);
+  }
 }

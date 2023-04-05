@@ -10,7 +10,5 @@ import { CommonModule } from '@angular/common';
   imports: [IonicModule, CommonModule]
 })
 export class AppComponent {
-  public environmentInjector = inject(EnvironmentInjector);
-
   constructor() {}
 }
