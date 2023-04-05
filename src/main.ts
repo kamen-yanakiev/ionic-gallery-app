@@ -26,10 +26,3 @@ ServiceWorkerModule.register('ngsw-worker.js', {
   // or after 30 seconds (whichever comes first).
   registrationStrategy: 'registerWhenStable:30000'
 });
-
-// import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
-
-// import { AppModule } from './app/app.module';
-
-// platformBrowserDynamic().bootstrapModule(AppModule)
-//   .catch(err => console.error(err));

@@ -27,9 +27,7 @@ export class ViewPhotoPageComponent implements OnInit {
       .get('id')
       ?.split(':')[1];
     if (photoId) {
-      console.log(photoId);
       this.photo = this.appStore.getFavoritePhoto(photoId) || {};
-      console.log(this.photo);
     }
   }
 

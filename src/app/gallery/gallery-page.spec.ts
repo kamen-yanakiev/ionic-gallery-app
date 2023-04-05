@@ -41,8 +41,8 @@ describe('GalleryPageComponent', () => {
   });
 
   it('should load photos on onInit', () => {
-    spyOn(component, 'loadPhotos').and.callThrough();
+    const spy = spyOn(component, 'loadPhotos').and.callThrough();
     component.ngOnInit();
-    expect(component.loadPhotos).toHaveBeenCalled();
+    expect(spy).toHaveBeenCalled();
   })
 });
