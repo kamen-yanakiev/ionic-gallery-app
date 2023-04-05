@@ -8,3 +8,10 @@
     height: 1px;
     opacity: 0;
 }
+
+.spinner-container {
+    text-align: center;
+    ion-spinner {
+        transform: scale(2);
+    }
+}

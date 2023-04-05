@@ -1,34 +1,27 @@
-<ion-content [fullscreen]="true">
+<ion-content
+  [fullscreen]="true"
+  [scrollEvents]="true"
+  (ionScrollEnd)="onScroll()"
+>
   <ion-grid>
     <ion-row *ngIf="photos$" class="photos-container">
-      <ion-col *ngFor="let photo of photos$ | async" sizeLg="4" sizeMd="6" sizeSm="12" >
-        <!-- {{photo | json}} -->
+      <ion-col
+        *ngFor="let photo of photos$ | async"
+        sizeLg="4"
+        sizeMd="6"
+        sizeSm="12"
+      >
         <app-photo (click)="favoritePhoto(photo)" [photo]="photo"></app-photo>
       </ion-col>
-
-      <!-- <ion-col sizeLg="4" sizeMd="6" sizeSm="12">
-        <app-photo></app-photo>
-      </ion-col>
-      <ion-col sizeLg="4" sizeMd="6" sizeSm="12">
-        <app-photo></app-photo>
-      </ion-col>
-      <ion-col sizeLg="4" sizeMd="6" sizeSm="12">
-        <app-photo></app-photo>
-      </ion-col>
-      <ion-col sizeLg="4" sizeMd="6" sizeSm="12">
-        <app-photo></app-photo>
-      </ion-col>
-      <ion-col sizeLg="4" sizeMd="6" sizeSm="12">
-        <app-photo></app-photo>
-      </ion-col> -->      
     </ion-row>
-    <!-- <ion-row>
-    </ion-row> -->
 
+    <ion-row
+      *ngIf="isLoading"
+      class="spinner-container ion-margin-top ion-margin-bottom"
+    >
+      <ion-col size="12">
+        <ion-spinner name="crescent"></ion-spinner>
+      </ion-col>
+    </ion-row>
   </ion-grid>
-  
-  <div (scroll)="addPhotos()" class="infinite-scroll"></div>
-  
 </ion-content>
-
-

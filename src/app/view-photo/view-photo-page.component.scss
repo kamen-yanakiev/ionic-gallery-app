@@ -1,3 +1,6 @@
 .view-photo-page-container {
     text-align: center;
+    .remove-photo-button {
+        --border-radius: 0;
+    }
 }

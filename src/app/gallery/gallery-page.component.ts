@@ -1,5 +1,7 @@
-import { Component, EnvironmentInjector, OnInit, inject } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
+import { Subject, takeUntil } from 'rxjs';
 import { PhotosService } from 'src/services/photos.service';
 import { AppStore } from 'src/store/app.store';
 
@@ -9,21 +11,36 @@ import { AppStore } from 'src/store/app.store';
   styleUrls: ['gallery-page.component.scss'],
   standalone: true,
   imports: [IonicModule],
-  providers: [],
 })
-export class GalleryPageComponent implements OnInit {
-  // public environmentInjector = inject(EnvironmentInjector);
-
+export class GalleryPageComponent implements OnInit, OnDestroy {
   public selectedTab = 'photos';
 
-  constructor(private photosService: PhotosService, private appStore: AppStore) {}
+  private readonly unsubscribe$ = new Subject();
+
+  constructor(
+    private photosService: PhotosService,
+    private appStore: AppStore,
+    private _router: Router
+  ) {}
 
   ngOnInit(): void {
-    this.appStore.addPhotos(this.photosService.getPhotos());
+    this.photosService
+      .getPhotos()
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe((res) => {
+        this.appStore.addPhotos(res);
+      });
+    // For a cleaner implementation, a facade can be implemented, so that components don't directly call appStore or photosService.
+    // Did not have the time to implement that facade, but it would definitely be better if it was there.
+    this.appStore.initializeFavoritePhotos();
   }
 
-  tabChanged(event: any): void {
-    console.log(event);
+  navigateToPhotos(): void {
+    this._router.navigate(['/gallery/photos']);
   }
 
+  ngOnDestroy(): void {
+    this.unsubscribe$.next('');
+    this.unsubscribe$.complete();
+  }
 }

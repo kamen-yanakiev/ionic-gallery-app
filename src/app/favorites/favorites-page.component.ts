@@ -13,19 +13,15 @@ import { Router } from '@angular/router';
   styleUrls: ['favorites-page.component.scss'],
   standalone: true,
   imports: [IonicModule, PhotoComponent, CommonModule],
-  providers: []
 })
 export class FavoritesPageComponent implements OnInit {
+  public favoritePhotos$: Observable<Photo[]> = this.appStore.favoritePhotos$;
 
-  favoritePhotos$: Observable<Photo[]> = this.appStore.favoritePhotos$;
-  
   constructor(private appStore: AppStore, private _router: Router) {}
 
-  ngOnInit(): void {      
-  }
+  ngOnInit(): void {}
 
   removeFavoritePhoto(photo: Photo) {
-    this._router.navigate([`/gallery/photos/id:${photo.id}`]);
-    // this.appStore.removeFavoritePhoto(photo);
+    this._router.navigate([`/gallery/photos/id:${photo.id}`])
   }
 }
